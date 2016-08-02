@@ -17,10 +17,11 @@
 		<div class="jumbotron">
   			<h1>News Base!</h1>
   			<p>The Most current events right here!</p>
+  			<a href='/scrape'><button type="button" class="btn btn-default">Check for more recenct News</button></a>
 		</div>
 		<div class="panel panel-default">
   			<div class="panel-heading">
-   				<h3 class="panel-title">article titel with that links to article</h3>
+   				<h3 class="panel-title"><span>title</span></h3>
  			 </div>
   			 <div class="panel-body">
   			 	<div class="row">
@@ -29,18 +30,19 @@
     		 				<label for="comment">Leave a comment</label>
     		 				<input name="comment" id="comment" class="form-control"></input>
     		 				</br>
-							<button type="button" class="btn btn-default">Submit</button>
+							<button type="button" class="btn btn-default" data-ref="_id">Submit</button>
     		 			</form>
     		 		</div>
     		 	</div>
     		 	</br>
     		 	<div class="row">
     		 		<div class="col-md-12">
-    		 			<div class="well" id="savedComment">recent comments here</div>
+    		 			<div class="well" id="savedComment"><span><p>commments</p></span></div>
     		 		</div>
     		 	</div>
   			 </div>
 		</div>
 	</div>
+<script type="text/javascript" src="index.js"></script>
 </body>
 </html>

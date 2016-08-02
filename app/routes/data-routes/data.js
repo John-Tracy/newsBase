@@ -19,7 +19,7 @@ module.exports = function(app, db){
 	app.get('/scrape', function(req, res){
 
 		request('http://www.orlandosentinel.com/sports/', function(err, res, body){
-			console.log('happening?');
+			
 			var $ = cheerio.load(body);
 
 			var title = $('a.trb_outfit_primaryItem_article_title_a').slice(0).eq(0).text();
@@ -27,8 +27,30 @@ module.exports = function(app, db){
 			
 			console.log(title);
 			console.log(link);
+
+			db.scrapedData.insert({
+				title: title,
+				link: link,
+				comments: []
+			});
 		});	
-	
+		
+		res.json('reload');
+	});
+
+	app.get('/getData', function(req, res){
+
+		// pulls data from database and uses it.
+		db.scrapedData.find({}, function(err, docs){
+			res.json(docs);
+		})
+
+
 	});
 
 };
+
+
+
+
+
