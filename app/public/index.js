@@ -37,6 +37,13 @@ $(document).ready(function () {
 			var wellDiv = $('<div>').addClass('well');
 				wellDiv.attr('id', 'comment' + data[i]._id);
 
+			for(var x = data[i].comments.length - 1; x >= 0; x--){
+
+				var com = $('<p>').html(data[i].comments[x]);
+					wellDiv.append(com);
+
+			} // end of for loop for comment generator
+
 				panelHead.append(anchorTag);
 
 			var	colOne = colDiv.append(commentForm);
@@ -77,7 +84,7 @@ $(document).ready(function () {
 
 	function leaveComment() {
 		var objectId = $(this).attr('data-ref');
-		var theComment = $('#' + objectId).val().trim();
+		var theComment = $('#input' + objectId).val().trim();
 		$('#input' + objectId).val('');
 
 		$.ajax({
@@ -86,7 +93,7 @@ $(document).ready(function () {
 			data: {
 				objectId: objectId,
 				comment: theComment
-			}
+			},
 			success: function(response){
 
 				if("success"){
