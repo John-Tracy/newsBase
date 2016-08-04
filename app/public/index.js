@@ -38,12 +38,12 @@ $(document).ready(function () {
 				wellDiv.attr('id', 'comment' + data[i]._id);
 
 			for(var x = data[i].comments.length - 1; x >= 0; x--){
-
+				var dataSig = x.toString();
 				var delBut = $('<span>').addClass('glyphicon glyphicon-remove del');
 					delBut.attr('data-id', data[i]._id);
-					delBut.attr('data-name', data[i].comments[x]);
+					delBut.attr('data-name', data[i]._id + dataSig);
 				var com = $('<p>').html(data[i].comments[x] + '   ');
-					com.attr('id', data[i].comments[x]);
+					com.attr('id', data[i]._id + dataSig);
 					com.append(delBut);
 					wellDiv.append(com);
 
@@ -112,10 +112,25 @@ $(document).ready(function () {
 	function deleteComment() {
 
 		var objId = $(this).attr('data-id');
-		var data = $(this).attr('data-name');
-		console.log(objId);
-		console.log(data);
-		$('#' + data).remove();
+		var pFinder = $(this).attr('data-name');
+		var data = $('#' + pFinder).text().trim();
+		console.log(data+ "it worked");
+
+		$.ajax({
+			url: currentUrl + '/deleteComment',
+			method: 'POST',
+			data: {
+				objectId: objId,
+				comment: data
+			},
+			success: function(response){
+				if("success"){
+					$('#' + pFinder).remove();
+				}
+			}
+		}); // end of ajax post
+	
+
 
 	}; // end of deleteComment function
 

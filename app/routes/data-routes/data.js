@@ -56,8 +56,8 @@ module.exports = function(app, db){
 
 	app.post('/deleteComment', function(req, res){
 
-		
-
+		db.scrapedData.update({_id: mongojs.ObjectId(req.body.objectId)}, {$pull: {"comments": req.body.comment}});
+		res.json('success');
 	});
 
 };
