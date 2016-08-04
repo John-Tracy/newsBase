@@ -54,6 +54,12 @@ module.exports = function(app, db){
 
 	});
 
+	app.post('/deleteComment', function(req, res){
+
+		
+
+	});
+
 };
 
 

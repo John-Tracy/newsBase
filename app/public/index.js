@@ -39,7 +39,12 @@ $(document).ready(function () {
 
 			for(var x = data[i].comments.length - 1; x >= 0; x--){
 
-				var com = $('<p>').html(data[i].comments[x]);
+				var delBut = $('<span>').addClass('glyphicon glyphicon-remove del');
+					delBut.attr('data-id', data[i]._id);
+					delBut.attr('data-name', data[i].comments[x]);
+				var com = $('<p>').html(data[i].comments[x] + '   ');
+					com.attr('id', data[i].comments[x]);
+					com.append(delBut);
 					wellDiv.append(com);
 
 			} // end of for loop for comment generator
@@ -102,9 +107,22 @@ $(document).ready(function () {
 
 			}
 		});
-	}
+	}; // end of leaveComment function
+
+	function deleteComment() {
+
+		var objId = $(this).attr('data-id');
+		var data = $(this).attr('data-name');
+		console.log(objId);
+		console.log(data);
+		$('#' + data).remove();
+
+	}; // end of deleteComment function
+
 
 	$(document).on('click', '.commentSubmit', leaveComment);
+
+	$(document).on('click', '.del', deleteComment);
 
 });
 
