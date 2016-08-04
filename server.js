@@ -22,8 +22,6 @@ db.on('error', function(err) {
   console.log('Database Error:', err);
 });
 
-
-
 // ROUTES
 // ===========================================================
 require('./app/routes/data-routes/data.js')(app, db);
