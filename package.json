@@ -1,0 +1,37 @@
+{
+  "name": "newsbase",
+  "version": "1.0.0",
+  "description": "An app that takes articles from news sites and displays them for users to read and comment on",
+    "engines" : {
+    "npm": "4.x"
+  },
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cheerio": "^0.20.0",
+    "express": "^4.14.0",
+    "mongojs": "^2.4.0",
+    "request": "^2.74.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/John-Tracy/newsBase.git"
+  },
+  "keywords": [
+    "nodejs",
+    "cheeriojs",
+    "express",
+    "mongodb"
+  ],
+  "author": "john tracy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/John-Tracy/newsBase/issues"
+  },
+  "homepage": "https://github.com/John-Tracy/newsBase#readme"
+}
