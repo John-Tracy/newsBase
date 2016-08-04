@@ -24,13 +24,12 @@ $(document).ready(function () {
 
 			var commentForm = $('<form>');
 			var formLabel = $('<label>').html('Leave a Comment');
-			var formButton = $('<button>').addClass('btn btn-default');
-				formButton.attr('id', 'commentSubmit');
+			var formButton = $('<button>').addClass('btn btn-default commentSubmit');
 				formButton.attr('type', 'button');
 				formButton.attr('data-ref', data[i]._id);
 				formButton.html('Submit');
 			var inputBox = $('<input>').addClass('form-control');
-				inputBox.attr('id', 'comment');
+				inputBox.attr('id', data[i]._id);
 				commentForm.append(formLabel);
 				commentForm.append(inputBox);
 				commentForm.append(formButton);
@@ -75,6 +74,23 @@ $(document).ready(function () {
 		});
 		return false;
 	}); // on click function 
+
+	function leaveComment() {
+		var objectId = $(this).attr('data-ref');
+		var theComment = $('#' + objectId).val().trim();
+		$('#' + objectId).val('');
+
+		$.ajax({
+			url: currentUrl + '/comment',
+			method: 'POST',
+			data: {
+				objectId: objectId,
+				comment: 
+			}
+		});
+	}
+
+	$(document).on('click', '.commentSubmit', leaveComment);
 
 });
 

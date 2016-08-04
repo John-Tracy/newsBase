@@ -47,6 +47,12 @@ module.exports = function(app, db){
 
 	});
 
+	app.post('/comment', function(req, res){
+
+		
+
+	});
+
 };
 
 
