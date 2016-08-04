@@ -29,13 +29,13 @@ $(document).ready(function () {
 				formButton.attr('data-ref', data[i]._id);
 				formButton.html('Submit');
 			var inputBox = $('<input>').addClass('form-control');
-				inputBox.attr('id', data[i]._id);
+				inputBox.attr('id', 'input' + data[i]._id);
 				commentForm.append(formLabel);
 				commentForm.append(inputBox);
 				commentForm.append(formButton);
 
 			var wellDiv = $('<div>').addClass('well');
-				wellDiv.attr('id', 'savedComment');
+				wellDiv.attr('id', 'comment' + data[i]._id);
 
 				panelHead.append(anchorTag);
 
@@ -78,14 +78,21 @@ $(document).ready(function () {
 	function leaveComment() {
 		var objectId = $(this).attr('data-ref');
 		var theComment = $('#' + objectId).val().trim();
-		$('#' + objectId).val('');
+		$('#input' + objectId).val('');
 
 		$.ajax({
 			url: currentUrl + '/comment',
 			method: 'POST',
 			data: {
 				objectId: objectId,
-				comment: 
+				comment: theComment
+			}
+			success: function(response){
+
+				if("success"){
+					$('#comment' + objectId).prepend('<p>'+ theComment +'</p>');
+				}
+
 			}
 		});
 	}

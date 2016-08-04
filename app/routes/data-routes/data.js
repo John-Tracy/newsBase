@@ -49,7 +49,8 @@ module.exports = function(app, db){
 
 	app.post('/comment', function(req, res){
 
-		
+		db.scrapedData.update({_id: mongojs.ObjectId(req.body.objectId)}, {$push: {"comments": req.body.comment}});
+		res.json('success');
 
 	});
 
