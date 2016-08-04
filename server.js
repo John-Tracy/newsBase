@@ -15,9 +15,9 @@ app.use(bodyParser.json({type:'application/vnd.api+json'}));
 // Database configuration
 var mongojs = require('mongojs');
 var databaseUrl = "mongodb://heroku_2b8v8x22:e4ckvcagn9qnsk7bv7vse0mfnn@ds139725.mlab.com:39725/heroku_2b8v8x22";
-// var collections = ["scrapedData"];
+var collections = ["scrapedData"];
 //  mongojs configuration to the db variable
-var db = mongojs(databaseUrl);
+var db = mongojs(databaseUrl, collections);
 db.on('error', function(err) {
   console.log('Database Error:', err);
 });
