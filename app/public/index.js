@@ -68,7 +68,7 @@ $(document).ready(function () {
 		}; // for loop
 
 	}; // end of contentGenerator function 
-	
+	var commentCount = 0;
 	var currentUrl = window.location.origin;
 
 	$.ajax({url: currentUrl + '/getData', method: 'GET'}).done(function(response){
@@ -86,8 +86,8 @@ $(document).ready(function () {
 		});
 		return false;
 	}); // on click function 
-
 	function leaveComment() {
+		commentCount++;
 		var objectId = $(this).attr('data-ref');
 		var theComment = $('#input' + objectId).val().trim();
 		$('#input' + objectId).val('');
@@ -102,7 +102,14 @@ $(document).ready(function () {
 			success: function(response){
 
 				if("success"){
-					$('#comment' + objectId).prepend('<p>'+ theComment +'</p>');
+					var newPtag = $('<p>');
+					newPtag.attr('id', objectId + 'sess-only' + commentCount.toString());
+					newPtag.html(theComment + ' ');
+					var glyph = $('<span>').addClass('glyphicon glyphicon-remove del');
+					glyph.attr('data-name', objectId + 'sess-only' + commentCount.toString());
+					glyph.attr('data-id', objectId);
+					$('#comment' + objectId).prepend(newPtag);
+					newPtag.append(glyph);
 				}
 
 			}
